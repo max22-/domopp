@@ -1,2 +1,4 @@
 Makefile
+clock.cpp
+clock.h
 domopp.cpp
