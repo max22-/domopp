@@ -1,4 +1,15 @@
 Makefile
 clock.cpp
 clock.h
+console.cpp
+console.h
 domopp.cpp
+light.cpp
+light.h
+macros.cpp
+macros.h
+mpd.cpp
+mpd.h
+mqtt.cpp
+mqtt.h
+secret.h

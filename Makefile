@@ -1,14 +1,29 @@
 all: domopp
 .PHONY: clean
 
-domopp: domopp.o clock.o
-	g++ domopp.o clock.o -o domopp -lncurses -lpthread
+domopp: domopp.o clock.o console.o mqtt.o mpd.o light.o macros.o
+	g++ domopp.o clock.o console.o mqtt.o mpd.o light.o macros.o -o domopp -lncurses -lpthread -lmosquittopp
 
 domopp.o: domopp.cpp
 	g++ -c domopp.cpp -o domopp.o -Wall
 
-clock.o: clock.cpp
+clock.o: clock.cpp clock.h
 	g++ -c clock.cpp -o clock.o -Wall
+
+console.o: console.cpp console.h
+	g++ -c console.cpp -o console.o -Wall
+
+mqtt.o: mqtt.cpp mqtt.h
+	g++ -c mqtt.cpp -o mqtt.o -Wall
+
+mpd.o: mpd.cpp mpd.h
+	g++ -c mpd.cpp -o mpd.o -Wall
+
+light.o: light.cpp light.h
+	g++ -c light.cpp -o light.o -Wall
+
+macros.o: macros.cpp macros.h
+	g++ -c macros.cpp -o macros.o -Wall
 
 clean:
 	rm -rf *.o
