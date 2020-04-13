@@ -4,7 +4,6 @@
 #include "console.h"
 #include "mpd.h"
 #include "light.h"
-#include "globals.h"
 
 namespace macro {
 
@@ -15,7 +14,6 @@ void goToBed()
     console.println("Macro", "Running goToBed");
     light::bedroom::off();
     light::livingroom::on();
-    mqtt.loop();
     mpd.loadPlaylist("playlist3");
     const int hifiBootTime = 40;
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
