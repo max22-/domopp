@@ -4,6 +4,11 @@
 
 Mqtt::Mqtt(const std::string host) : host(host)
 {
+
+}
+
+void Mqtt::begin()
+{
     Console& console = Console::getInstance();
     mosqpp::lib_init();
     console.println("MQTT",  "Connecting to MQTT broker " + host);

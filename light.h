@@ -3,15 +3,17 @@
 
 #include "mqtt.h"
 
-class Light
-{
-public:
-    Light(Mqtt& mqttClient);
+namespace light {
+namespace bedroom {
     void on();
     void off();
+}
 
-private:
-    Mqtt& mqttClient;
-};
+namespace livingroom {
+    void on();
+    void off();
+}
+}
+
 
 #endif // LIGHT_H

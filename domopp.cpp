@@ -9,7 +9,11 @@
 #include "macros.h"
 #include "secret.h"
 
+Mqtt mqtt(mqttHost);
+
 enum class Mode {DEFAULT, PLAYLISTS, PODCASTS, MACROS};
+
+
 
 int main() {
     bool exit = false;
@@ -27,8 +31,7 @@ int main() {
 
     std::thread th1(cornerClock);
 
-    Mqtt mqtt(mqttHost);
-    Light light(mqtt);
+    mqtt.begin();
 
     while(!exit) {
         int c = getch();
@@ -67,10 +70,10 @@ int main() {
                         mpd.toggle();
                         break;
                     case '1':
-                        light.on();
+                        light::bedroom::on();
                         break;
                     case '2':
-                        light.off();
+                        light::bedroom::off();
                         break;
                     case '3':
                         mpd.volumeUp();

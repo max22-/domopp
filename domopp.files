@@ -4,6 +4,7 @@ clock.h
 console.cpp
 console.h
 domopp.cpp
+globals.h
 light.cpp
 light.h
 macros.cpp
