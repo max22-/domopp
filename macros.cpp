@@ -4,6 +4,7 @@
 #include "console.h"
 #include "mpd.h"
 #include "light.h"
+#include "computer.h"
 
 namespace macro {
 
@@ -12,6 +13,7 @@ void goToBed()
     Console& console = Console::getInstance();
     MPD mpd;
     console.println("Macro", "Running goToBed");
+    computer::shutdown();
     light::bedroom::off();
     light::livingroom::on();
     mpd.loadPlaylist("playlist3");
