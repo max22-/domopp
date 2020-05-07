@@ -15,7 +15,7 @@ void Mqtt::begin()
     int ret = connect(host.c_str());
     console.println("MQTT", "connect() returned " + std::to_string(ret));
     console.println("MQTT", "Starting MQTT loop");
-    loop_start();
+    threaded_set();
 }
 
 void Mqtt::on_connect(int rc) {

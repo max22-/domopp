@@ -28,12 +28,14 @@ int main() {
     noecho();
     cbreak();
     curs_set(0);
+    timeout(100);
 
     std::thread th1(cornerClock);
 
     mqtt.begin();
 
     while(!exit) {
+        mqtt.loop();
         int c = getch();
         switch(c) {
             case 'q':
