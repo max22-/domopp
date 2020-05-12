@@ -1,6 +1,7 @@
 #include "mqtt.h"
 #include "console.h"
 #include "macros.h"
+#include "light.h"
 
 Mqtt::Mqtt(const std::string host) : host(host)
 {
@@ -23,7 +24,7 @@ void Mqtt::on_connect(int rc) {
     console.println("MQTT", "Connected to MQTT broker with code " + std::to_string(rc));
     if(rc == 0) {
         console.println("MQTT", "Subscribing to topics");
-        subscribe(nullptr, "/light/bedroom");
+        subscribe(nullptr, "light/bedroom");
         subscribe(nullptr, "/macro/goToBed");
         subscribe(nullptr, "/macro/hifiPower");
         subscribe(nullptr, "/macro/Marguerite");
@@ -41,11 +42,11 @@ void Mqtt::on_message(const struct mosquitto_message *message)
     console.println("MQTT", "payloadlen=" + std::to_string(message->payloadlen));
     std::string payload = reinterpret_cast<char *>(message->payload);
     console.println("MQTT", topic + " : " + payload);
-    if(message->topic == std::string("/light/bedroom")) {
+    if(message->topic == std::string("light/bedroom")) {
         if(payload == "1")
-            console.println("LIGHT", "Turning bedroom light on");
+            light::bedroom::on();
         else
-            console.println("LIGHT", "Turning bedroom light off");
+            light::bedroom::off();
     }
     else if(message->topic == std::string("/macro/goToBed")) {
         macro::goToBed();

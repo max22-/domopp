@@ -1,16 +1,32 @@
 #include "light.h"
 #include "globals.h"
+#include "console.h"
+#ifdef __arm__
+#include <wiringPi.h>
+#endif
 
 namespace light {
 namespace bedroom {
+
+    const int pinNumber = 7;
+
     void on()
     {
-        mqtt.publish(nullptr, "/light/bedroom", 1, "1", 2, true);
+        Console::getInstance().println("LIGHT", "Turning bedroom light on");
+        #ifdef __arm__
+        pinMode(pinNumber, OUTPUT);
+        digitalWrite(pinNumber, LOW);
+        #endif
+        mqtt.publish(nullptr, "/light/bedroom/status", 1, "1", 0, true);
     }
 
     void off()
     {
-        mqtt.publish(nullptr, "/light/bedroom", 1, "0", 2, true);
+        Console::getInstance().println("LIGHT", "Turning bedroom light off");
+        #ifdef __arm__
+        pinMode(pinNumber, INPUT);
+        #endif
+        mqtt.publish(nullptr, "/light/bedroom/status", 1, "0", 0, true);
     }
 }
 

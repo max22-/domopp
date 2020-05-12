@@ -20,12 +20,12 @@ Console& Console::getInstance()
 void Console::println(std::string subject, std::string msg)
 {
     consoleMutex.lock();
-    buffer.push_front(msg);
+    buffer.push_front(make_pair(subject, msg));
     while(buffer.size() > static_cast<unsigned long>(LINES-1))
         buffer.pop_back();
     int i = 0;
     for(auto it = buffer.crbegin(); it != buffer.crend(); ++it) {
-        mvprintw(1+i++, 0, ("[" + subject + "] " + *it).c_str());
+        mvprintw(1+i++, 0, ("[" + it->first + "] " + it->second).c_str());
         clrtoeol();
     }
     refresh();

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <deque>
+#include <utility>
 #include <mutex>
 
 class Console
@@ -18,7 +19,7 @@ public:
 private:
     Console();
     ~Console();
-    std::deque<std::string> buffer;
+    std::deque<std::pair<std::string, std::string>> buffer;
     unsigned long lines;
     std::mutex consoleMutex;
 };

@@ -1,8 +1,6 @@
 Makefile
 clock.cpp
 clock.h
-computer.cpp
-computer.h
 console.cpp
 console.h
 domopp.cpp
