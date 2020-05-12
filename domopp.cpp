@@ -1,6 +1,9 @@
 #include <iostream>
 #include <ncurses.h>
 #include <thread>
+#ifdef __arm__
+#include <wiringPi.h>
+#endif
 #include "clock.h"
 #include "console.h"
 #include "mqtt.h"
@@ -29,6 +32,10 @@ int main() {
     cbreak();
     curs_set(0);
     timeout(100);
+
+    #ifdef __arm__
+        wiringPiSetup();
+    #endif
 
     std::thread th1(cornerClock);
 
