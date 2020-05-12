@@ -1,5 +1,5 @@
 CFLAGS=-Wall
-LDFLAGS=-lncurses -lpthread -lmosquittopp -lwiringpi
+LDFLAGS=-lncurses -lpthread -lmosquittopp -lwiringPi
 
 all: domopp
 .PHONY: clean
