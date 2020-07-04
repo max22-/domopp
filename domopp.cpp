@@ -42,7 +42,11 @@ int main() {
     mqtt.begin();
 
     while(!exit) {
-        mqtt.loop();
+        int rc = mqtt.loop();
+        if(rc) {
+            mqtt.reconnect();
+            console.println("MQTT", "Disconnected. Reconnecting to server...");
+        }
         int c = getch();
         switch(c) {
             case 'q':
