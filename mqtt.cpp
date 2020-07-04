@@ -28,6 +28,7 @@ void Mqtt::on_connect(int rc) {
         subscribe(nullptr, "/macro/goToBed");
         subscribe(nullptr, "/macro/hifiPower");
         subscribe(nullptr, "/macro/Marguerite");
+        subscribe(nullptr, "telnet");
     }
 }
 
